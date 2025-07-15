@@ -1,12 +1,14 @@
 import datetime
 
+# Class to represent single Expense record.
 class Expense:
     def __init__ (self,category,amount,date,note = "This is a product"):
         self.amount = amount
         self.category = category
         self.date = date
         self.note = note
-        
+
+# Class to manage and track multiple expenses.        
 class ExpenseTracker:
     
     def __init__ (self):
@@ -71,7 +73,9 @@ class ExpenseTracker:
         if (category_total == 0): print("No entries for ", category)
         print ("Total for ",category,": ", category_total)
      
-#Function Outside the class       
+# Functions Outside the class
+
+# Function to allow user to select a category from predefined option       
 def choose_category():
     while True:
         category_dict = {1:'Food',2:'Transport',3:'Shopping',4:'Utilities',5:'Entertainment',6:'Health',7:'Education'}
@@ -82,7 +86,8 @@ def choose_category():
                 continue
             return category_dict[key]
         except ValueError : print("Invalid Input!")
-    
+ 
+# Function to prompt user to input a valid date   
 def choose_date():
     while True:
         try:
@@ -96,7 +101,8 @@ def choose_date():
             continue
         break
     return date
-    
+ 
+# Password verification to restrict access to sensitive actions: Add, Delete, Update   
 def verify():
     password = 'manager-123'
     while (True):
@@ -107,11 +113,13 @@ def verify():
         print("Correct Password!")
         break
     
-
+    
+# Main program loop
 tracker = ExpenseTracker()
 print("\n\t\t\t\tWELCOME TO EXPENSE TRACKER")
 
 while True:
+    # Display menu options for user
     print("-" * 30,"\n1.Add Expense\n2.Delete Expense\n3.Update Expense\n4.Filter By Category \n5.Filter By Month\n6.Filter By Date\n7. Display Summary\n8.Exit Program")
     choice = int(input("\nEnter Choice: "))
     try:
@@ -127,7 +135,6 @@ while True:
                 except ValueError: print("Invalid Input")
             tracker.add_expense(category,amount,date,note)
                 
-    
         elif (choice == 2):
             verify()
             tracker.display_expense()
@@ -175,4 +182,4 @@ while True:
         print("Invalid Choice!")
         continue
       
-print("GOODBYE!!!")
+print("GOODBYE!")
